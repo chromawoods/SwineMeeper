@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+button {
+  padding: .5rem 1rem;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #99d;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+button:hover, button:focus {
+  background-color: #88d;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .3);
+}
+
+select {
+  padding: .5rem 1rem;
+  font-family: Sniglet;
+  font-size: 1.1rem;
+}
+
+.sm-container {
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.sm-controls {
+  margin: 1rem 0;
+}
+
+.sm-grid {
+  margin: 0 auto 1rem;
+  padding: 0;
+  text-align: center;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.sm-cell {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  box-shadow: 0 0 1px 0;
+}
+
+.sm-cell-link {
+  display: block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Sniglet;
+  font-size: 1.4rem;
+  color: #555;
+  background-color: #ccc;
+  outline: none;
+}
+
+.sm-cell-link:hover,
+.sm-cell-link:focus {
+  background-color: #d5d5d5;
+}
+
+.sm-cell.revealed .sm-cell-link {
+  background-color: #eee;
+}
+
+.sm-cell.revealed.swine .sm-cell-link {
+  background-color: #eeb;
+  background-image: url('../images/swine.png');
+  background-size: contain;
+}

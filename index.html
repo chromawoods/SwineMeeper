@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SwineMeeper!</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+  </head>
+  <body>
+
+    <div class="sm-container" id="sm-container">
+      <div class="sm-controls" id="sm-controls">
+        <select data-sm-difficulty>
+          <option value="easy" selected="selected">Easy</option>
+          <option value="normal">Normal</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <table class="sm-grid" data-sm-grid>
+      </table>
+    </div>
+
+    <!-- Libs -->
+    <script src="scripts/lib/jquery-3.0.0.slim.min.js"></script>
+    <script src="scripts/lib/modulejs-2.1.0.min.js"></script>
+
+    <!-- App -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/swine-meeper.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/cell.js"></script>
+    <script src="scripts/grid.js"></script>
+    <script src="scripts/detector.js"></script>
+    <script src="scripts/jquery.js"></script>
+
+    <script>
+      modulejs.require('main').start('.sm-container');
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Sniglet">
+
+  </body>
+</html>
