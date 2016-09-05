@@ -4,6 +4,7 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
   function SwineMeeper($el) {
 
     this.$el = $el;
+    this.$status = this.$el.find('[data-status-message]');
     this.grid = null;
 
     this.addEventHandlers();
@@ -33,8 +34,16 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
         this.reset();
       }
 
+      this.updateStatus('');
       this.grid = grid.getNew(this.$el.find('[data-sm-grid]'), rows, cols, numSwine);
       this.isRunning = true;
+    },
+
+
+    updateStatus: function(msg) {
+
+      this.$status.html(msg);
+
     },
 
 
@@ -63,13 +72,13 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
 
 
     winGame: function() {
-      console.log("You win! Well done!");
+      this.updateStatus('You win! Yay!');
       this.gameOver = true;
     },
 
 
     loseGame: function() {
-      console.log("You lost the game!");
+      this.updateStatus('Boom! You lost! :(');
       this.gameOver = true;
       this.grid.detector.detectAll();
       this.render();
@@ -92,7 +101,7 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
       }
 
       else if (cell.adjacentSwine) {
-        cell.$el.children().html(cell.adjacentSwine.toString());
+        cell.$el.children().addClass('adjacent-' + cell.adjacentSwine.toString());
       }
 
       else { cellClasses += ' empty'; }
@@ -103,7 +112,11 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
 
     onCellClicked: function($cell) {
 
-      var instance = $cell.data('cellInstance');
+      var instance = $cell.addClass('is-user-clicked').data('cellInstance');
+
+      if (instance.isFlagged) {
+        return false;
+      }
 
       instance.isUserClicked = true;
 
@@ -128,14 +141,33 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
     },
 
 
+    onCellRightClicked: function($cell) {
+
+      $cell.data('cellInstance').toggleFlagged();
+      this.numClicks += 1;
+
+    },
+
+
     addEventHandlers: function() {
 
       var self = this;
 
+      // User reveals a cell by left clicking it
       this.$el.on('click', '.sm-cell-link', function(event) {
 
         if (!self.gameOver) {
           self.onCellClicked($(this).parent());
+        }
+
+        event.preventDefault();
+      });
+
+      // User flags a cell by right clicking it
+      this.$el.on('contextmenu', '.sm-cell-link', function(event) {
+
+        if (!self.gameOver) {
+          self.onCellRightClicked($(this).parent());
         }
 
         event.preventDefault();

@@ -7,6 +7,7 @@ modulejs.define('cell', ['jquery'], function($) {
   var Cell = {
 
     isSwine: false,
+    isFlagged: false,
     isUserClicked: false,
     isDetected: false,
     isRevealed: false,
@@ -36,6 +37,22 @@ modulejs.define('cell', ['jquery'], function($) {
 
   Cell.reveal = function() {
     this.isRevealed = true;
+    return this;
+  };
+
+
+  Cell.toggleFlagged = function() {
+
+    if (this.isFlagged) {
+      this.isFlagged = false;
+      this.$el.removeClass('flagged');
+    }
+
+    else {
+      this.isFlagged = true;
+      this.$el.addClass('flagged');
+    }
+
     return this;
   };
 

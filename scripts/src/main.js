@@ -2,9 +2,9 @@ modulejs.define('main', ['swine-meeper', 'ui'], function(swineMeeper, createUi) 
 
   return {
 
-    start: function(selector) {
+    start: function() {
 
-      $(selector).each(function() {
+      $('.sm-container').each(function() {
         createUi(swineMeeper.getNew($(this)));
       });
 

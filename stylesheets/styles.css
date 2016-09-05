@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: Sniglet, sans-serif;
 }
 
 button {
@@ -24,6 +24,8 @@ select {
   font-family: Sniglet;
   font-size: 1.1rem;
 }
+
+p { font-size: 1.2rem; }
 
 .sm-container {
   text-align: center;
@@ -56,11 +58,63 @@ select {
   line-height: 32px;
   text-align: center;
   text-decoration: none;
-  font-family: Sniglet;
   font-size: 1.4rem;
   color: #555;
   background-color: #ccc;
   outline: none;
+}
+
+.sm-cell-link:before {
+  color: #555;
+}
+
+.sm-cell.flagged .sm-cell-link:before {
+  content: "F";
+  color: #f70;
+}
+
+.sm-cell.flagged.revealed .sm-cell-link:before {
+  content: "";
+}
+
+.sm-cell-link.adjacent-1:before {
+  content: "1";
+  color: #55a;
+}
+
+.sm-cell-link.adjacent-2:before {
+  content: "2";
+  color: #5a5;
+}
+
+.sm-cell-link.adjacent-3:before {
+  content: "3";
+  color: #a55;
+}
+
+.sm-cell-link.adjacent-4:before {
+  content: "4";
+  color: #b2b;
+}
+
+.sm-cell-link.adjacent-5:before {
+  content: "5";
+  color: #544;
+}
+
+.sm-cell-link.adjacent-6:before {
+  content: "6";
+  color: #399;
+}
+
+.sm-cell-link.adjacent-7:before {
+  content: "7";
+  color: #d0d;
+}
+
+.sm-cell-link.adjacent-8:before {
+  content: "8";
+  color: #333;
 }
 
 .sm-cell-link:hover,
@@ -76,4 +130,8 @@ select {
   background-color: #eeb;
   background-image: url('../images/swine.png');
   background-size: contain;
+}
+
+.sm-cell.revealed.swine.is-user-clicked .sm-cell-link {
+  background-color: #a55;
 }
