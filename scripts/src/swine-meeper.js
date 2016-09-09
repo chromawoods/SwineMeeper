@@ -1,14 +1,19 @@
-modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
+/**
+ * Main game controller module.
+ */
+modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, createTimer) {
 
 
   function SwineMeeper($el) {
 
     this.$el = $el;
-    this.$status = this.$el.find('[data-status-message]');
+    this.$status = this.$el.find('[data-sm-status-message]');
+    this.timer = createTimer(this.$el.find('[data-sm-timer]')).reset();
     this.grid = null;
 
     this.addEventHandlers();
     this.reset();
+
   }
 
 
@@ -17,6 +22,7 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
     reset: function() {
 
       this.isRunning = false;
+      this.timer.stop();
       this.numClicks = 0;
       this.health = 0;
       this.gameOver = false;
@@ -36,13 +42,17 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
 
       this.updateStatus('');
       this.grid = grid.getNew(this.$el.find('[data-sm-grid]'), rows, cols, numSwine);
+      this.timer.reset().start();
       this.isRunning = true;
+
+      return this;
     },
 
 
     updateStatus: function(msg) {
 
       this.$status.html(msg);
+      return this;
 
     },
 
@@ -71,16 +81,23 @@ modulejs.define('swine-meeper', ['jquery', 'grid'], function($, grid) {
     },
 
 
-    winGame: function() {
-      this.updateStatus('You win! Yay!');
+    doGameOver: function() {
+
       this.gameOver = true;
+      this.timer.stop();
+
+      return this;
+    },
+
+
+    winGame: function() {
+      this.updateStatus('You win! Yay!').doGameOver();
     },
 
 
     loseGame: function() {
       this.updateStatus('Boom! You lost! :(');
-      this.gameOver = true;
-      this.grid.detector.detectAll();
+      this.doGameOver().grid.detector.detectAll();
       this.render();
     },
 

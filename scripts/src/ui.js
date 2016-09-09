@@ -1,3 +1,6 @@
+/**
+ * Setup event handlers for input controls bound to a SwineMeeper game.
+ */
 modulejs.define('ui', ['jquery'], function($) {
 
   var UI = {
@@ -50,7 +53,7 @@ modulejs.define('ui', ['jquery'], function($) {
     this.$difficulty.on('change', this.onChangeDifficulty.bind(this));
 
     this.$el.on('click', '[data-sm-reset]', function() {
-      this.sm.start();
+      this.onChangeDifficulty();
     }.bind(this));
 
   };
