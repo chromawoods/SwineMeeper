@@ -1,3 +1,6 @@
+/**
+ * Creates cells and populates Swine.
+ */
 modulejs.define('grid', ['cell', 'jquery', 'detector'], function(createCell, $, createDetector) {
 
   // Constructor function

@@ -1,5 +1,5 @@
 /**
- * Defines the prototype of a Cell.
+ * Defines and returns an instance of a Cell object.
  */
 modulejs.define('cell', ['jquery'], function($) {
 
