@@ -4,7 +4,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('scripts', function() {
 
-  gulp.src('./scripts/src/*.js')
+  gulp.src(['./scripts/src/license.js', './scripts/src/*.js'])
     .pipe(concat('SwineMeeper.min.js'))
     .pipe(uglify({
       preserveComments: 'license'
