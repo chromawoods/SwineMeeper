@@ -20,6 +20,7 @@ modulejs.define('timer', ['jquery'], function($) {
     var v = this.currentVal,
       vs = v.toString();
 
+    // Figure out leading zeroes for the timer display
     this.currentHumanVal = v > 99 ? vs : v > 9 ? '0' + vs : v > 0 ? '00' + vs : '000';
 
     return this;

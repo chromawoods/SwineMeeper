@@ -42,7 +42,7 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
 
       this.updateStatus('');
       this.grid = grid.getNew(this.$el.find('[data-sm-grid]'), rows, cols, numSwine);
-      this.timer.reset().start();
+      this.timer.reset();
       this.isRunning = true;
 
       return this;
@@ -166,12 +166,21 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
     },
 
 
+    onInteraction: function() {
+
+      this.numClicks || this.timer.start();
+      
+    },
+
+
     addEventHandlers: function() {
 
       var self = this;
 
       // User reveals a cell by left clicking it
       this.$el.on('click', '.sm-cell-link', function(event) {
+
+        self.onInteraction();
 
         if (!self.gameOver) {
           self.onCellClicked($(this).parent());
@@ -182,6 +191,8 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
 
       // User flags a cell by right clicking it
       this.$el.on('contextmenu', '.sm-cell-link', function(event) {
+
+        self.onInteraction();
 
         if (!self.gameOver) {
           self.onCellRightClicked($(this).parent());
