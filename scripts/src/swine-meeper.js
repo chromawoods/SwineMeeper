@@ -1,7 +1,7 @@
 /**
  * Main game controller module.
  */
-modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, createTimer) {
+modulejs.define('swine-meeper', ['jquery', 'grid', 'timer', 'apm'], function($, grid, createTimer, createApm) {
 
 
   function SwineMeeper($el) {
@@ -9,6 +9,7 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
     this.$el = $el;
     this.$status = this.$el.find('[data-sm-status-message]');
     this.timer = createTimer(this.$el.find('[data-sm-timer]')).reset();
+    this.apm = createApm(this.$el.find('[data-sm-apm]'), this.timer);
     this.grid = null;
 
     this.addEventHandlers();
@@ -23,6 +24,8 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
 
       this.isRunning = false;
       this.timer.stop();
+      this.apm.reset();
+      this.numReveals = 0;
       this.numClicks = 0;
       this.health = 0;
       this.gameOver = false;
@@ -41,7 +44,7 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
       }
 
       this.updateStatus('');
-      this.grid = grid.getNew(this.$el.find('[data-sm-grid]'), rows, cols, numSwine);
+      this.grid = grid.getNew(this.$el.removeClass('sm-game-end').find('[data-sm-grid]'), rows, cols, numSwine);
       this.timer.reset();
       this.isRunning = true;
 
@@ -83,7 +86,9 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
 
     doGameOver: function() {
 
+      this.$el.addClass('sm-game-end')
       this.gameOver = true;
+      this.apm.update(this.numReveals);
       this.timer.stop();
 
       return this;
@@ -155,6 +160,8 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
       }
 
       this.numClicks += 1;
+      this.numReveals += 1;
+
     },
 
 
@@ -169,7 +176,7 @@ modulejs.define('swine-meeper', ['jquery', 'grid', 'timer'], function($, grid, c
     onInteraction: function() {
 
       this.numClicks || this.timer.start();
-      
+
     },
 
 

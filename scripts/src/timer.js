@@ -15,6 +15,11 @@ modulejs.define('timer', ['jquery'], function($) {
   };
 
 
+  Timer.getMilliDuration = function() {
+    return Date.now() - this.startMillis;
+  };
+
+
   Timer.setHumanValue = function() {
 
     var v = this.currentVal,
@@ -50,6 +55,7 @@ modulejs.define('timer', ['jquery'], function($) {
 
   Timer.start = function() {
 
+    this.startMillis = Date.now();
     this.isRunning = true;
     this.interval = setInterval(this.onInterval.bind(this), 1000);
 
