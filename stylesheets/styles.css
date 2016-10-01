@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Sniglet, sans-serif;
@@ -27,13 +31,23 @@ select {
 
 p { font-size: 1.2rem; }
 
-.sm-container {
-  text-align: center;
-  margin: 4rem 0;
+.sm-col {
+  width: 50%;
+  padding: 0 2rem;
+  float: right;
 }
 
-.sm-controls {
-  margin: 1rem 0;
+.sm-btn-reset {
+  display: none;
+}
+
+.sm-game-end .sm-btn-reset {
+  display: inline-block;
+}
+
+.sm-container {
+  padding: 1rem 0;
+  overflow-y: hidden;
 }
 
 .sm-grid {
@@ -134,4 +148,18 @@ p { font-size: 1.2rem; }
 
 .sm-cell.revealed.swine.is-user-clicked .sm-cell-link {
   background-color: #a55;
+}
+
+
+@media all and (max-width: 720px) {
+
+  .sm-col {
+    width: 100%;
+    float: none;
+  }
+
+  .sm-grid {
+    margin: 0;
+  }
+
 }

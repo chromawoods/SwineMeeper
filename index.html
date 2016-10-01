@@ -8,18 +8,21 @@
   <body>
 
     <div class="sm-container" id="sm-container">
-      <div class="sm-controls" id="sm-controls">
+      <div class="sm-controls sm-col" id="sm-controls">
         <select data-sm-difficulty>
           <option value="easy" selected="selected">Easy</option>
           <option value="normal">Normal</option>
           <option value="hard">Hard</option>
         </select>
+        <p data-sm-timer class="sm-timer"></p>
+        <button data-sm-reset class="sm-btn-reset">Start over</button>
+        <p data-sm-status-message></p>
+        <p class="sm-apm" data-sm-apm></p>
       </div>
-      <p data-sm-timer class="sm-timer"></p>
-      <table class="sm-grid" data-sm-grid>
-      </table>
-      <button data-sm-reset>Start over</button>
-      <p data-sm-status-message></p>
+      <div class="sm-col">
+        <table class="sm-grid" data-sm-grid>
+        </table>
+      </div>
     </div>
 
     <!-- Libs -->
