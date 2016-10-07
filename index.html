@@ -5,24 +5,25 @@
     <title>SwineMeeper!</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
   </head>
-  <body>
+  <body class="sm-container">
 
-    <div class="sm-container" id="sm-container">
-      <div class="sm-controls sm-col" id="sm-controls">
-        <select data-sm-difficulty>
-          <option value="easy" selected="selected">Easy</option>
-          <option value="normal">Normal</option>
-          <option value="hard">Hard</option>
-        </select>
-        <p data-sm-timer class="sm-timer"></p>
-        <button data-sm-reset class="sm-btn-reset">Start over</button>
-        <p data-sm-status-message></p>
-        <p class="sm-apm" data-sm-apm></p>
-      </div>
-      <div class="sm-col">
-        <table class="sm-grid" data-sm-grid>
-        </table>
-      </div>
+    <div class="sm-playfield sm-col">
+
+      <table class="sm-grid" data-sm-grid>
+      </table>
+
+    </div>
+
+    <div class="sm-controls sm-col" id="sm-controls">
+      <select data-sm-difficulty>
+        <option value="easy" selected="selected">Easy</option>
+        <option value="normal">Normal</option>
+        <option value="hard">Hard</option>
+      </select>
+      <p data-sm-timer class="sm-timer"></p>
+      <button data-sm-reset class="sm-btn-reset">Start over</button>
+      <p data-sm-status-message></p>
+      <p class="sm-apm" data-sm-apm></p>
     </div>
 
     <!-- Libs -->
@@ -36,7 +37,7 @@
       modulejs.require('main').start();
     </script>
 
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Sniglet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Chewy">
 
   </body>
 </html>

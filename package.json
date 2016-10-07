@@ -1,6 +1,6 @@
 {
   "name": "SwineMeeper",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Minesweeper game made with JavaScript",
   "homepage": "https://github.com/chromawoods/SwineMeeper",
   "author": {
@@ -12,6 +12,7 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0"
   }
 }
