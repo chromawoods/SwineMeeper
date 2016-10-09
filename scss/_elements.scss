@@ -1,0 +1,34 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: Chewy, sans-serif;
+}
+
+button {
+  padding: .5rem 1rem;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #99d;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+button:hover, button:focus {
+  background-color: #88d;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .3);
+}
+
+select {
+  padding: .5rem 1rem;
+  font-family: Chewy;
+  font-size: 1.1rem;
+}
+
+p { font-size: 1.2rem; }

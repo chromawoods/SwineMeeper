@@ -1,0 +1,87 @@
+.sm-btn-reset {
+  display: none;
+}
+
+.sm-game-end .sm-btn-reset {
+  display: inline-block;
+}
+
+.sm-grid {
+  margin: 0 auto 1rem;
+  padding: 0;
+  text-align: center;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.sm-cell {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  box-shadow: 0 0 1px 0;
+
+  &.flagged {
+
+    .sm-cell-link:before {
+      content: "F";
+      color: #f70;
+    }
+
+    &.revealed .sm-cell-link:before {
+      content: "";
+    }
+
+  }
+
+  &.revealed {
+
+    .sm-cell-link {
+      background-color: #eee;
+    }
+
+    &.swine {
+
+      .sm-cell-link {
+        background-color: #fff;
+        background-image: url('../images/swine.png');
+        background-size: contain;
+      }
+
+      .is-user-clicked .sm-cell-link {
+        background-color: #a55;
+      }
+
+    }
+
+  }
+
+}
+
+.sm-cell-link {
+  display: block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #555;
+  background-color: #ccc;
+  outline: none;
+
+  &:before { color: #555; }
+
+  &.adjacent-1:before { content: "1"; color: #55a; }
+  &.adjacent-2:before { content: "2"; color: #5a5; }
+  &.adjacent-3:before { content: "3"; color: #a55; }
+  &.adjacent-4:before { content: "4"; color: #b2b; }
+  &.adjacent-5:before { content: "5"; color: #544; }
+  &.adjacent-6:before { content: "6"; color: #399; }
+  &.adjacent-7:before { content: "7"; color: #d0d; }
+  &.adjacent-8:before { content: "8"; color: #333; }
+
+  &:hover, &:focus {
+    background-color: #d5d5d5;
+  }
+
+}
