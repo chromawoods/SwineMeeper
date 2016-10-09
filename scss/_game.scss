@@ -22,9 +22,12 @@
 
   &.flagged {
 
-    .sm-cell-link:before {
-      content: "F";
-      color: #f70;
+    .sm-cell-link {
+      padding: 5px;
+      background-image: url('../images/flag.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 80%;
     }
 
     &.revealed .sm-cell-link:before {
