@@ -71,6 +71,7 @@
   color: #555;
   background-color: #ccc;
   outline: none;
+  transition: background-color $delay, background-image $delay;
 
   &:before { color: #555; }
 
