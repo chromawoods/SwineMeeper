@@ -10,7 +10,8 @@ modulejs.define('timer', ['jquery'], function($) {
     currentHumanVal: '',
     maxVal: 999,
     isRunning: false,
-    interval: null
+    interval: null,
+    intervalDelay: 100
 
   };
 
@@ -26,7 +27,11 @@ modulejs.define('timer', ['jquery'], function($) {
       vs = v.toString();
 
     // Figure out leading zeroes for the timer display
-    this.currentHumanVal = v > 99 ? vs : v > 9 ? '0' + vs : v > 0 ? '00' + vs : '000';
+    this.currentHumanVal = v >= 100 ? vs : v >= 10 ? '0' + vs : v > 0 ? '00' + vs : '000';
+
+    if (this.currentVal > 0 && vs.indexOf('.') < 0) {
+      this.currentHumanVal += '.0';
+    }
 
     return this;
 
@@ -47,7 +52,13 @@ modulejs.define('timer', ['jquery'], function($) {
 
   Timer.onInterval = function() {
 
-    this.currentVal += 1;
+    var decimals = 1;
+
+    this.currentVal += this.intervalDelay / 1000;
+
+    // Avoid weird rounding issues
+    this.currentVal = Number(Math.round(this.currentVal + 'e' + decimals) + 'e-' + decimals);
+
     this.setHumanValue().render();
 
   };
@@ -57,7 +68,7 @@ modulejs.define('timer', ['jquery'], function($) {
 
     this.startMillis = Date.now();
     this.isRunning = true;
-    this.interval = setInterval(this.onInterval.bind(this), 1000);
+    this.interval = setInterval(this.onInterval.bind(this), this.intervalDelay);
 
   };
 
