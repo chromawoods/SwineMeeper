@@ -1,7 +1,8 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var sass = require('gulp-sass');
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const less = require('gulp-less');
+const cleanCss = require('gulp-clean-css');
 
 
 gulp.task('scripts', function() {
@@ -18,10 +19,10 @@ gulp.task('scripts', function() {
 
 gulp.task('styles', function() {
 
-  gulp.src('./scss/**/*.scss')
-    .pipe(sass({
-      outputStyle: 'compressed'
-    }))
+  gulp.src('./styles/**/*.less')
+    .pipe(less())
+    .pipe(concat('styles.css'))
+    .pipe(cleanCss({ minify: true }))
     .pipe(gulp.dest('./stylesheets'))
 
 });
@@ -30,6 +31,6 @@ gulp.task('styles', function() {
 gulp.task('default', function() {
 
   gulp.watch('./scripts/src/**/*.js', ['scripts']);
-  gulp.watch('./scss/**/*.scss', ['styles']);
+  gulp.watch('./styles/**/*.less', ['styles']);
 
 });
